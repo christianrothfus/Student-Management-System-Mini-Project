@@ -1,4 +1,5 @@
 import service.StudentManager;
+import service.TeacherManager;
 import thread.AutoSaveTask;
 
 import java.util.Scanner;
@@ -11,6 +12,9 @@ public class Main {
 
         StudentManager manager =
                 new StudentManager(sc);
+
+        TeacherManager teacherManager =
+                new TeacherManager(sc);
 
         // Start background auto-save thread
         AutoSaveTask autoSaveTask =
@@ -100,15 +104,41 @@ public class Main {
                     break;
 
                 case 12:
+                    teacherManager.addTeacher();
+                    break;
+
+                case 13:
+                    teacherManager.viewTeachers();
+                    break;
+
+                case 14:
+                    teacherManager.searchById();
+                    break;
+
+                case 15:
+                    teacherManager.searchByCourse();
+                    break;
+
+                case 16:
+                    teacherManager.updateTeacher();
+                    break;
+
+                case 17:
+                    teacherManager.deleteTeacher();
+                    break;
+
+                case 18:
                     manager.saveToFile();
+                    teacherManager.saveToFile();
                     System.out.println(
                             "Data saved successfully."
                     );
                     break;
 
-                case 13:
+                case 19:
 
                     manager.saveToFile();
+                    teacherManager.saveToFile();
 
                     autoSaveTask.stopTask();
 
@@ -131,7 +161,7 @@ public class Main {
 
                 default:
                     System.out.println(
-                            "Invalid choice! Please select 1-13."
+                            "Invalid choice! Please select 1-19."
                     );
             }
         }
@@ -156,8 +186,16 @@ public class Main {
         System.out.println("9.  Display Top Performing Students");
         System.out.println("10. Sort Students");
         System.out.println("11. Course-wise Student Count");
-        System.out.println("12. Save Data");
-        System.out.println("13. Exit");
+        System.out.println("----------------------------------------------");
+        System.out.println("12. Add Teacher");
+        System.out.println("13. View All Teachers");
+        System.out.println("14. Search Teacher by ID");
+        System.out.println("15. Search Teachers by Course");
+        System.out.println("16. Update Teacher");
+        System.out.println("17. Delete Teacher");
+        System.out.println("----------------------------------------------");
+        System.out.println("18. Save Data");
+        System.out.println("19. Exit");
         System.out.println("==============================================");
     }
 }
